@@ -4,6 +4,10 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
+// Route files *****
+const authRoutes = require("./routes/authRoutes");
+const studentRoutes = require("./routes/studentRoutes");
+
 const connectDB = require("./config/db");
 
 dotenv.config();
@@ -14,6 +18,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// Routes section *****
+app.use("/api/auth", authRoutes);
+app.use("/api/students", studentRoutes);
 
 app.get("/", (req, res) => {
   res.send("API Running");
