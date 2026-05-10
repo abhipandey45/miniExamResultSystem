@@ -9,6 +9,8 @@ import DashboardPage from "./pages/dashboard/DashboardPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import StudentsPage from "./pages/students/StudentsPage";
 import StudentFormPage from "./pages/students/StudentFormPage";
+import SubjectsPage from "./pages/subjects/SubjectsPage";
+import SubjectFormPage from "./pages/subjects/SubjectFormPage";
 
 
 
@@ -61,6 +63,32 @@ const App = () => {
         element={
           <ProtectedRoute>
             <StudentFormPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/subjects"
+        element={
+          <ProtectedRoute>
+            <SubjectsPage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/subjects/add"
+        element={
+          <ProtectedRoute>
+            <SubjectFormPage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/subjects/edit/:id"
+        element={
+          <ProtectedRoute>
+            <SubjectFormPage />
           </ProtectedRoute>
         }
       />
