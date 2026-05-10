@@ -5,10 +5,10 @@ import {
 } from "react-router-dom";
 
 import LoginPage from "./pages/auth/LoginPage";
-
 import DashboardPage from "./pages/dashboard/DashboardPage";
-
 import ProtectedRoute from "./routes/ProtectedRoute";
+import StudentsPage from "./pages/students/StudentsPage";
+import StudentFormPage from "./pages/students/StudentFormPage";
 
 
 
@@ -25,25 +25,43 @@ const App = () => {
         }
       />
 
-
-
       <Route
         path="/login"
         element={<LoginPage />}
       />
 
-
-
       <Route
         path="/dashboard"
         element={
-
           <ProtectedRoute>
-
             <DashboardPage />
-
           </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/students"
+        element={
+          <ProtectedRoute>
+            <StudentsPage />
+          </ProtectedRoute>
+        }
+      />
 
+      <Route
+        path="/students/add"
+        element={
+          <ProtectedRoute>
+            <StudentFormPage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/students/edit/:id"
+        element={
+          <ProtectedRoute>
+            <StudentFormPage />
+          </ProtectedRoute>
         }
       />
 
