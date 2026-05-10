@@ -1,69 +1,138 @@
-import { useAuth } from "../../context/AuthContext";
+import {
+  useEffect,
+  useState,
+} from "react";
 
-import { useNavigate } from "react-router-dom";
+import API from "../../api/axios";
+
+import toast from "react-hot-toast";
+
+import AdminLayout from "../../layouts/AdminLayout";
+
+import SummaryCard from "../../components/dashboard/SummaryCard";
 
 
 
 const DashboardPage = () => {
 
-  const { logout } = useAuth();
+  const [summary, setSummary] =
+    useState(null);
 
-  const navigate = useNavigate();
+  const [loading, setLoading] =
+    useState(true);
 
 
 
-  const handleLogout = () => {
+  const fetchDashboardData =
+    async () => {
 
-    logout();
+      try {
 
-    navigate("/login");
+        const { data } =
+          await API.get(
+            "/dashboard/summary"
+          );
 
-  };
+        setSummary(data);
+
+      } catch (error) {
+
+        toast.error(
+          "Failed to load dashboard"
+        );
+
+      } finally {
+
+        setLoading(false);
+
+      }
+
+    };
+
+
+
+  useEffect(() => {
+
+    fetchDashboardData();
+
+  }, []);
+
+
+
+  if (loading) {
+
+    return (
+
+      <div className="min-h-screen flex justify-center items-center">
+
+        <h1 className="text-2xl font-bold">
+
+          Loading...
+
+        </h1>
+
+      </div>
+
+    );
+
+  }
 
 
 
   return (
 
-    <div className="min-h-screen bg-slate-100">
+    <AdminLayout>
 
-      <div className="bg-white shadow-md px-8 py-4 flex justify-between items-center">
+      <div className="mb-8">
 
-        <h1 className="text-2xl font-bold">
-          Dashboard
+        <h1 className="text-4xl font-bold text-slate-800">
+
+          Dashboard Overview
+
         </h1>
 
-        <button
-          onClick={handleLogout}
-          className="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-lg"
-        >
-          Logout
-        </button>
+        <p className="text-gray-500 mt-2">
+
+          Welcome to Exam Result Admin Panel
+
+        </p>
 
       </div>
 
 
 
-      <div className="p-8">
+      {/* SUMMARY GRID */}
 
-        <div className="bg-white p-8 rounded-2xl shadow">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6">
 
-          <h2 className="text-3xl font-bold mb-3">
+        <SummaryCard
+          title="Total Students"
+          value={summary.totalStudents}
+        />
 
-            Mini Exam Result System
+        <SummaryCard
+          title="Total Subjects"
+          value={summary.totalSubjects}
+        />
 
-          </h2>
+        <SummaryCard
+          title="Total Results"
+          value={summary.totalResults}
+        />
 
-          <p className="text-gray-600">
+        <SummaryCard
+          title="Passed Students"
+          value={summary.passedStudents}
+        />
 
-            Authentication successful.
-
-          </p>
-
-        </div>
+        <SummaryCard
+          title="Failed Students"
+          value={summary.failedStudents}
+        />
 
       </div>
 
-    </div>
+    </AdminLayout>
 
   );
 
