@@ -8,6 +8,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const studentRoutes = require("./routes/studentRoutes");
 const subjectRoutes = require("./routes/subjectRoutes");
+const resultRoutes = require("./routes/resultRoutes");
 
 const connectDB = require("./config/db");
 
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/students", studentRoutes);
 app.use("/api/subjects", subjectRoutes);
+app.use("/api/results", resultRoutes);
 
 app.get("/", (req, res) => {
   res.send("API Running");
