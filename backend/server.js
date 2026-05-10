@@ -7,6 +7,7 @@ const cors = require("cors");
 // Route files *****
 const authRoutes = require("./routes/authRoutes");
 const studentRoutes = require("./routes/studentRoutes");
+const subjectRoutes = require("./routes/subjectRoutes");
 
 const connectDB = require("./config/db");
 
@@ -22,6 +23,7 @@ app.use(express.json());
 // Routes section *****
 app.use("/api/auth", authRoutes);
 app.use("/api/students", studentRoutes);
+app.use("/api/subjects", subjectRoutes);
 
 app.get("/", (req, res) => {
   res.send("API Running");
