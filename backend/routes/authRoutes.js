@@ -6,4 +6,12 @@ const {
   loginAdmin,
 } = require("../controllers/authControllers");
 
+// LOGIN ROUTE
+router.post(
+  "/login",
+  loginAdmin
+);
+
+
+
 module.exports = router;

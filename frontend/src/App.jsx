@@ -1,14 +1,53 @@
+import {
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+
+import LoginPage from "./pages/auth/LoginPage";
+
+import DashboardPage from "./pages/dashboard/DashboardPage";
+
+import ProtectedRoute from "./routes/ProtectedRoute";
+
+
+
 const App = () => {
 
   return (
 
-    <div>
+    <Routes>
 
-      <h1 className="text-3xl font-bold text-center mt-10">
-        Mini Exam Result System
-      </h1>
+      <Route
+        path="/"
+        element={
+          <Navigate to="/login" />
+        }
+      />
 
-    </div>
+
+
+      <Route
+        path="/login"
+        element={<LoginPage />}
+      />
+
+
+
+      <Route
+        path="/dashboard"
+        element={
+
+          <ProtectedRoute>
+
+            <DashboardPage />
+
+          </ProtectedRoute>
+
+        }
+      />
+
+    </Routes>
 
   );
 
