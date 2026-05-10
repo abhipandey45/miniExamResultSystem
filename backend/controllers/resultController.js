@@ -202,13 +202,23 @@ const getResults = async (req, res) => {
 
   try {
 
-    const results = await Result.find()
+    const query = {};
+
+    if (req.query.examName) {
+
+      query.examName = req.query.examName;
+
+    }
+
+    const results = await Result.find(query)
 
       .populate("studentId")
 
       .populate("subjects.subjectId")
 
-      .sort({ createdAt: -1 });
+      .sort({
+        createdAt: -1,
+      });
 
     res.status(200).json(results);
 
@@ -221,7 +231,6 @@ const getResults = async (req, res) => {
   }
 
 };
-
 
 
 /*

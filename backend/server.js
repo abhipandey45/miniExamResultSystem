@@ -9,6 +9,7 @@ const authRoutes = require("./routes/authRoutes");
 const studentRoutes = require("./routes/studentRoutes");
 const subjectRoutes = require("./routes/subjectRoutes");
 const resultRoutes = require("./routes/resultRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 
 const connectDB = require("./config/db");
 
@@ -26,6 +27,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/students", studentRoutes);
 app.use("/api/subjects", subjectRoutes);
 app.use("/api/results", resultRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 app.get("/", (req, res) => {
   res.send("API Running");

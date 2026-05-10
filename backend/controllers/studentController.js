@@ -82,7 +82,28 @@ const getStudents = async (req, res) => {
 
   try {
 
-    const students = await Student.find().sort({
+    const keyword = req.query.search
+      ? {
+          $or: [
+            {
+              name: {
+                $regex: req.query.search,
+                $options: "i",
+              },
+            },
+            {
+              rollNumber: {
+                $regex: req.query.search,
+                $options: "i",
+              },
+            },
+          ],
+        }
+      : {};
+
+    const students = await Student.find(
+      keyword
+    ).sort({
       createdAt: -1,
     });
 
