@@ -13,10 +13,7 @@ import {
 
 
 const Sidebar = () => {
-
   const location = useLocation();
-
-
 
   const menuItems = [
 
@@ -43,35 +40,21 @@ const Sidebar = () => {
       path: "/results",
       icon: <FaPoll />,
     },
-
   ];
-
-
 
   return (
 
     <div className="w-64 bg-slate-900 text-white min-h-screen shadow-lg">
-
       {/* LOGO */}
-
       <div className="p-6 border-b border-slate-700">
-
         <h1 className="text-2xl font-bold">
-
           Exam Admin
-
         </h1>
-
       </div>
 
-
-
       {/* MENU */}
-
       <div className="p-4 space-y-2">
-
         {menuItems.map((item) => (
-
           <Link
             key={item.name}
             to={item.path}
@@ -86,21 +69,13 @@ const Sidebar = () => {
               }
             `}
           >
-
             {item.icon}
-
             <span>{item.name}</span>
-
           </Link>
-
         ))}
-
       </div>
-
     </div>
-
   );
-
 };
 
 export default Sidebar;

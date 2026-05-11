@@ -2,61 +2,32 @@ import {
   useEffect,
   useState,
 } from "react";
-
 import {
   useNavigate,
   useParams,
 } from "react-router-dom";
-
 import toast from "react-hot-toast";
-
 import API from "../../api/axios";
-
 import AdminLayout from "../../layouts/AdminLayout";
 
-
-
 const StudentFormPage = () => {
-
   const navigate = useNavigate();
-
   const { id } = useParams();
-
-
-
   const isEditMode = Boolean(id);
-
-
-
-  const [loading, setLoading] =
-    useState(false);
-
-
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] =
     useState({
-
       name: "",
       rollNumber: "",
       className: "",
       section: "",
       email: "",
       phone: "",
-
     });
-
-
 
   const handleChange = (e) => {
-
-    setFormData({
-
-      ...formData,
-
-      [e.target.name]: e.target.value,
-
-    });
-
+    setFormData({...formData,[e.target.name]: e.target.value,});
   };
 
 

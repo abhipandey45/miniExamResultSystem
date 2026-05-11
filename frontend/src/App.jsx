@@ -11,6 +11,9 @@ import StudentsPage from "./pages/students/StudentsPage";
 import StudentFormPage from "./pages/students/StudentFormPage";
 import SubjectsPage from "./pages/subjects/SubjectsPage";
 import SubjectFormPage from "./pages/subjects/SubjectFormPage";
+import ResultsPage from "./pages/results/ResultsPage";
+import ResultFormPage from "./pages/results/ResultFormPage";
+import ResultDetailPage from "./pages/results/ResultDetailPage";
 
 
 
@@ -89,6 +92,32 @@ const App = () => {
         element={
           <ProtectedRoute>
             <SubjectFormPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/results"
+        element={
+          <ProtectedRoute>
+            <ResultsPage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/results/add"
+        element={
+          <ProtectedRoute>
+            <ResultFormPage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/results/:id"
+        element={
+          <ProtectedRoute>
+            <ResultDetailPage />
           </ProtectedRoute>
         }
       />

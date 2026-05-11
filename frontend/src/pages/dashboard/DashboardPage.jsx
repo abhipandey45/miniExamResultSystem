@@ -2,16 +2,10 @@ import {
   useEffect,
   useState,
 } from "react";
-
 import API from "../../api/axios";
-
 import toast from "react-hot-toast";
-
 import AdminLayout from "../../layouts/AdminLayout";
-
 import SummaryCard from "../../components/dashboard/SummaryCard";
-
-
 
 const DashboardPage = () => {
 
@@ -25,9 +19,7 @@ const DashboardPage = () => {
 
   const fetchDashboardData =
     async () => {
-
       try {
-
         const { data } =
           await API.get(
             "/dashboard/summary"
@@ -42,64 +34,38 @@ const DashboardPage = () => {
         );
 
       } finally {
-
         setLoading(false);
-
       }
-
     };
 
 
-
   useEffect(() => {
-
     fetchDashboardData();
-
   }, []);
 
-
-
   if (loading) {
-
     return (
-
       <div className="min-h-screen flex justify-center items-center">
-
         <h1 className="text-2xl font-bold">
-
           Loading...
-
         </h1>
-
       </div>
-
     );
-
   }
-
-
 
   return (
 
     <AdminLayout>
-
       <div className="mb-8">
 
         <h1 className="text-4xl font-bold text-slate-800">
-
           Dashboard Overview
-
         </h1>
 
         <p className="text-gray-500 mt-2">
-
           Welcome to Exam Result Admin Panel
-
         </p>
-
       </div>
-
-
 
       {/* SUMMARY GRID */}
 
@@ -129,13 +95,9 @@ const DashboardPage = () => {
           title="Failed Students"
           value={summary.failedStudents}
         />
-
       </div>
-
     </AdminLayout>
-
   );
-
 };
 
 export default DashboardPage;

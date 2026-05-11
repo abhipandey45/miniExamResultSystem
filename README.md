@@ -1,26 +1,21 @@
-# Mini Exam Result System
+Project Name : Mini Exam Result Module System
 
-## Tech Stack
+Backend Setup :
+1. cd backend
+2. npm install
+3. create .env file
+4. npm run dev
 
-- React.js
-- Redux.js
-- Tailwind CSS
-- Node.js
-- Express.js
-- MongoDB Atlas
+Frontend Setup :
+1. cd frontend
+2. npm install
+3. npm start
 
-...
+Environment Variables :
+Mongo_URI = mongodb+srv://mini_exam_result_admin:Exam123@cluster0.juve02v.mongodb.net/?appName=Cluster0
+JWT_SECRET = exam_secret_key
+PORT = 5000
 
-## Backend Setup
-
-cd backend
-npm install
-npm run dev
-
-....
-
-## Frontend Setup
-
-cd frontend
-npm install
-npm run dev
+Admin Login Credentials :
+Email: admin@gmail.com
+Password: admin123

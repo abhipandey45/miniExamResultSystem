@@ -1,19 +1,11 @@
 const { validationResult } = require("express-validator");
-
 const Subject = require("../models/Subject");
 
-
-
-/*
-========================================
-CREATE SUBJECT
-========================================
-*/
+//Create Subject
 
 const createSubject = async (req, res) => {
 
   try {
-
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -21,7 +13,6 @@ const createSubject = async (req, res) => {
       return res.status(400).json({
         errors: errors.array(),
       });
-
     }
 
     const {
@@ -38,46 +29,31 @@ const createSubject = async (req, res) => {
     });
 
     if (existingSubject) {
-
       return res.status(400).json({
         message: "Subject code already exists",
       });
-
     }
 
     const subject = await Subject.create({
-
       subjectName,
       subjectCode,
       fullMarks,
       passMarks,
-
     });
 
     res.status(201).json(subject);
 
   } catch (error) {
-
     res.status(500).json({
       message: error.message,
     });
-
   }
-
 };
 
-
-
-/*
-========================================
-GET ALL SUBJECTS
-========================================
-*/
-
+// Get All Subjects
 const getSubjects = async (req, res) => {
 
   try {
-
     const subjects = await Subject.find().sort({
       createdAt: -1,
     });
@@ -89,67 +65,44 @@ const getSubjects = async (req, res) => {
     res.status(500).json({
       message: error.message,
     });
-
   }
-
 };
 
-
-
-/*
-========================================
-GET SINGLE SUBJECT
-========================================
-*/
+// Get single subject
 
 const getSubjectById = async (req, res) => {
 
   try {
-
     const subject = await Subject.findById(
       req.params.id
     );
 
     if (!subject) {
-
       return res.status(404).json({
         message: "Subject not found",
       });
-
     }
 
     res.status(200).json(subject);
 
   } catch (error) {
-
     res.status(500).json({
       message: error.message,
     });
-
   }
-
 };
 
-
-
-/*
-========================================
-UPDATE SUBJECT
-========================================
-*/
+// Update subject
 
 const updateSubject = async (req, res) => {
 
   try {
-
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-
       return res.status(400).json({
         errors: errors.array(),
       });
-
     }
 
     const subject = await Subject.findById(
@@ -157,11 +110,9 @@ const updateSubject = async (req, res) => {
     );
 
     if (!subject) {
-
       return res.status(404).json({
         message: "Subject not found",
       });
-
     }
 
     // duplicate subject code check
@@ -172,11 +123,9 @@ const updateSubject = async (req, res) => {
     });
 
     if (existingSubject) {
-
       return res.status(400).json({
         message: "Subject code already exists",
       });
-
     }
 
     const updatedSubject =
@@ -191,37 +140,25 @@ const updateSubject = async (req, res) => {
     res.status(200).json(updatedSubject);
 
   } catch (error) {
-
     res.status(500).json({
       message: error.message,
     });
-
   }
-
 };
 
 
-
-/*
-========================================
-DELETE SUBJECT
-========================================
-*/
-
+// Delete subjects
 const deleteSubject = async (req, res) => {
 
   try {
-
     const subject = await Subject.findById(
       req.params.id
     );
 
     if (!subject) {
-
       return res.status(404).json({
         message: "Subject not found",
       });
-
     }
 
     await subject.deleteOne();
@@ -231,23 +168,16 @@ const deleteSubject = async (req, res) => {
     });
 
   } catch (error) {
-
     res.status(500).json({
       message: error.message,
     });
-
   }
-
 };
 
-
-
 module.exports = {
-
   createSubject,
   getSubjects,
   getSubjectById,
   updateSubject,
   deleteSubject,
-
 };

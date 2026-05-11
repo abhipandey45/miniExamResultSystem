@@ -5,11 +5,7 @@ import {
   useState,
 } from "react";
 
-
-
 const AuthContext = createContext();
-
-
 
 export const AuthProvider = ({
   children,
@@ -18,39 +14,24 @@ export const AuthProvider = ({
   const [adminInfo, setAdminInfo] =
     useState(null);
 
-
-
   useEffect(() => {
-
     const storedAdmin =
       localStorage.getItem("adminInfo");
-
     if (storedAdmin) {
-
       setAdminInfo(
         JSON.parse(storedAdmin)
       );
-
     }
-
   }, []);
 
-
-
   const logout = () => {
-
     localStorage.removeItem(
       "adminInfo"
     );
-
     setAdminInfo(null);
-
   };
 
-
-
   return (
-
     <AuthContext.Provider
       value={{
         adminInfo,
@@ -60,12 +41,7 @@ export const AuthProvider = ({
     >
       {children}
     </AuthContext.Provider>
-
   );
-
 };
 
-
-
-export const useAuth = () =>
-  useContext(AuthContext);
+export const useAuth = () => useContext(AuthContext);
